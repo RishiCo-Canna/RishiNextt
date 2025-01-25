@@ -1,16 +1,18 @@
-import React from "react";
-import client from "@/tina/__generated__/client";
-import Layout from "@/components/layout/layout";
-import ClientPage from "./[...filename]/client-page";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default async function Home() {
-  const data = await client.queries.page({
-    relativePath: `home.mdx`,
-  });
-
+export default function Home() {
   return (
-    <Layout rawPageData={data}>
-      <ClientPage {...data} />
-    </Layout>
+    <div className="min-h-screen w-full flex items-center justify-center bg-background">
+      <Card className="w-full max-w-md mx-4">
+        <CardContent className="pt-6">
+          <h1 className="text-2xl font-bold text-foreground mb-4">
+            Welcome to Next.js + Tina CMS
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            Edit this page in Tina CMS by going to /admin
+          </p>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

@@ -1,12 +1,1 @@
-import type { Express } from "express";
-import { createServer, type Server } from "http";
-
-export function registerRoutes(app: Express): Server {
-  // Health check endpoint
-  app.get('/api/health', (_req, res) => {
-    res.json({ status: 'ok' });
-  });
-
-  const httpServer = createServer(app);
-  return httpServer;
-}
+// This file can be safely deleted as Next.js handles routing
