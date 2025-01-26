@@ -11,7 +11,7 @@ const nextConfig = {
         destination: "/admin/index.html",
       },
     ];
-  },
+  }
 };
 
 export default nextConfig;
