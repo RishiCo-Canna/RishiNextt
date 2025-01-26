@@ -1,0 +1,15 @@
+{
+  "header": {
+    "name": "My Blog",
+    "nav": [
+      {
+        "label": "Home",
+        "href": ""
+      },
+      {
+        "label": "Blog",
+        "href": "blog"
+      }
+    ]
+  }
+}
