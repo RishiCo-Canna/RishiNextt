@@ -16,6 +16,12 @@ export default defineConfig({
     publicFolder: "public",
     basePath: "/admin",
   },
+  media: {
+    tina: {
+      publicFolder: "public",
+      mediaRoot: "uploads"
+    }
+  },
   schema: {
     collections: [
       {
@@ -91,11 +97,5 @@ export default defineConfig({
         ],
       },
     ],
-  },
-  media: {
-    tina: {
-      publicFolder: "public",
-      mediaRoot: "uploads",
-    },
-  },
+  }
 });

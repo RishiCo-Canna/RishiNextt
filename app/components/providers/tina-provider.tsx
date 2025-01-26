@@ -22,12 +22,8 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
         : "http://localhost:4001/graphql",
       token: process.env.TINA_TOKEN,
     },
-    build: {
-      publicFolder: "public",
-      outputFolder: "admin",
-      basePath: "/admin"
-    },
     media: {
+      // Using tina media store configuration
       tina: {
         publicFolder: "public",
         mediaRoot: "uploads"
