@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true concurrently "tinacms dev" "next dev -p 80"",
+    "dev": "concurrently 'tinacms dev' 'next dev -p 80'",
     "build": "tinacms build && next build",
     "start": "next start -p 80"
-    "test": "echo \"Error: no test specified\" && exit 1",
   },
   "keywords": [],
   "author": "",
