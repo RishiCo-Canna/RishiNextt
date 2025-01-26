@@ -7,8 +7,8 @@ const TinaCMSProvider = dynamic(() => import("./components/tina-provider"), {
 });
 
 export const metadata: Metadata = {
-  title: "Next.js App",
-  description: "A modern Next.js application",
+  title: "Next.js App with Tina CMS",
+  description: "A modern Next.js application with Tina CMS integration",
 };
 
 export default function RootLayout({
