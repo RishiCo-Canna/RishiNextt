@@ -1,12 +1,14 @@
 import { defineConfig } from "tinacms";
 
-// Get the branch from environment variable or default to main
+// Your publishing URL
 const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
+const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID as string;
+const token = process.env.TINA_TOKEN as string;
 
 export default defineConfig({
   branch,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  token: process.env.TINA_TOKEN,
+  clientId,
+  token,
 
   build: {
     outputFolder: "admin",
@@ -18,56 +20,8 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
-  // Schema for the CMS content
   schema: {
     collections: [
-      {
-        name: "global",
-        label: "Global",
-        path: "content/global",
-        format: "json",
-        fields: [
-          {
-            type: "object",
-            name: "theme",
-            label: "Theme",
-            fields: [
-              {
-                type: "string",
-                name: "primaryColor",
-                label: "Primary Color",
-              },
-              {
-                type: "string",
-                name: "darkMode",
-                label: "Dark Mode",
-                options: [
-                  { label: "System", value: "system" },
-                  { label: "Light", value: "light" },
-                  { label: "Dark", value: "dark" },
-                ],
-              },
-            ],
-          },
-          {
-            type: "object",
-            name: "header",
-            label: "Header",
-            fields: [
-              {
-                type: "string",
-                name: "name",
-                label: "Site Name",
-              },
-              {
-                type: "string",
-                name: "logo",
-                label: "Logo",
-              },
-            ],
-          },
-        ],
-      },
       {
         name: "page",
         label: "Pages",
@@ -86,54 +40,9 @@ export default defineConfig({
             name: "body",
             label: "Body",
             isBody: true,
-            templates: [
-              {
-                name: "Hero",
-                label: "Hero Section",
-                fields: [
-                  {
-                    name: "heading",
-                    label: "Heading",
-                    type: "string",
-                    required: true,
-                  },
-                  {
-                    name: "subheading",
-                    label: "Sub Heading",
-                    type: "string",
-                  },
-                ],
-              },
-            ],
-          },
+          }
         ],
-      },
-      {
-        name: "post",
-        label: "Blog Posts",
-        path: "content/posts",
-        fields: [
-          {
-            type: "string",
-            name: "title",
-            label: "Title",
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: "datetime",
-            name: "date",
-            label: "Date",
-            required: true,
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
-            isBody: true,
-          },
-        ],
-      },
+      }
     ],
   },
 });

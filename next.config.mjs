@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  env: {
-    NEXT_TELEMETRY_DISABLED: '1'
+  images: {
+    domains: ['assets.tina.io'],
   },
   async rewrites() {
     return [
@@ -11,7 +11,7 @@ const nextConfig = {
         destination: "/admin/index.html",
       },
     ];
-  }
+  },
 };
 
 export default nextConfig;
