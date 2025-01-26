@@ -12,10 +12,6 @@ const nextConfig = {
   webpack: (config) => {
     // Add any custom webpack configuration here
     return config;
-  },
-  // Ensure we're binding to all network interfaces
-  experimental: {
-    serverListenSocket: true
   }
 };
 
