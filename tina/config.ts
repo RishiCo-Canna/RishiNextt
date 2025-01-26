@@ -14,13 +14,12 @@ export default defineConfig({
   build: {
     outputFolder: "public/admin",
     publicFolder: "public",
-    basePath: "", // Remove /admin to ensure assets load correctly
+    basePath: "",
   },
   media: {
-    // Simplified media configuration
     tina: {
       publicFolder: "public",
-      mediaRoot: "media"
+      mediaRoot: "uploads"
     },
   },
   schema: {
@@ -48,53 +47,7 @@ export default defineConfig({
             name: "body",
             label: "Body",
             isBody: true,
-          },
-        ],
-      },
-      {
-        name: "global",
-        label: "Global",
-        path: "content/global",
-        format: "json",
-        ui: {
-          global: true,
-        },
-        fields: [
-          {
-            name: "header",
-            label: "Header",
-            type: "object",
-            fields: [
-              {
-                type: "string",
-                name: "name",
-                label: "Site Name",
-              },
-              {
-                type: "object",
-                name: "nav",
-                label: "Navigation",
-                list: true,
-                ui: {
-                  itemProps: (item) => ({
-                    label: item?.label,
-                  }),
-                },
-                fields: [
-                  {
-                    type: "string",
-                    name: "label",
-                    label: "Label",
-                  },
-                  {
-                    type: "string",
-                    name: "href",
-                    label: "Link",
-                  },
-                ],
-              },
-            ],
-          },
+          }
         ],
       },
     ],

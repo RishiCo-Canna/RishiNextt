@@ -1,11 +1,6 @@
 {
   "header": {
     "name": "Test Site",
-    "nav": [
-      {
-        "label": "Home",
-        "href": "/"
-      }
-    ]
+    "nav": []
   }
 }

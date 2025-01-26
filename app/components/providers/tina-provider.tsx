@@ -17,15 +17,8 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
     clientId,
     branch,
     client: {
-      url: branch === "main"
-        ? `https://content.tinajs.io/1.5/content/${clientId}/github/${branch}`
-        : "http://localhost:4001/graphql",
+      url: `https://content.tinajs.io/content/${clientId}/github/${branch}`,
       token: process.env.TINA_TOKEN,
-    },
-    cmsCallback: (cms) => {
-      cms.flags.set("branch", branch);
-      cms.flags.set("baseUrl", typeof window !== 'undefined' ? window.location.origin : '');
-      return cms;
     }
   });
 

@@ -13,10 +13,8 @@ var config_default = defineConfig({
     outputFolder: "public/admin",
     publicFolder: "public",
     basePath: ""
-    // Remove /admin to ensure assets load correctly
   },
   media: {
-    // Simplified media configuration
     tina: {
       publicFolder: "public",
       mediaRoot: "media"
