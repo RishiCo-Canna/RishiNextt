@@ -1,5 +1,6 @@
 import { defineConfig } from "tinacms";
 
+// Get the branch from environment variable or default to main
 const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
 
 export default defineConfig({
@@ -13,15 +14,56 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "",
+      mediaRoot: "uploads",
       publicFolder: "public",
     },
   },
+  // Schema for the CMS content
   schema: {
     collections: [
       {
+        name: "page",
+        label: "Pages",
+        path: "content/pages",
+        format: "mdx",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+            templates: [
+              {
+                name: "Hero",
+                label: "Hero Section",
+                fields: [
+                  {
+                    name: "heading",
+                    label: "Heading",
+                    type: "string",
+                    required: true,
+                  },
+                  {
+                    name: "subheading",
+                    label: "Sub Heading",
+                    type: "string",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
         name: "post",
-        label: "Posts",
+        label: "Blog Posts",
         path: "content/posts",
         fields: [
           {
@@ -29,6 +71,12 @@ export default defineConfig({
             name: "title",
             label: "Title",
             isTitle: true,
+            required: true,
+          },
+          {
+            type: "datetime",
+            name: "date",
+            label: "Date",
             required: true,
           },
           {
