@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "dev": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"next dev\"",
-     "build": "tinacms build && next build"
+    "dev": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +36,8 @@
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
     "date-fns": "^4.1.0",
     "drizzle-orm": "^0.38.4",
     "drizzle-zod": "^0.6.1",

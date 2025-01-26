@@ -22,6 +22,53 @@ export default defineConfig({
   schema: {
     collections: [
       {
+        name: "global",
+        label: "Global",
+        path: "content/global",
+        format: "json",
+        fields: [
+          {
+            type: "object",
+            name: "theme",
+            label: "Theme",
+            fields: [
+              {
+                type: "string",
+                name: "primaryColor",
+                label: "Primary Color",
+              },
+              {
+                type: "string",
+                name: "darkMode",
+                label: "Dark Mode",
+                options: [
+                  { label: "System", value: "system" },
+                  { label: "Light", value: "light" },
+                  { label: "Dark", value: "dark" },
+                ],
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "header",
+            label: "Header",
+            fields: [
+              {
+                type: "string",
+                name: "name",
+                label: "Site Name",
+              },
+              {
+                type: "string",
+                name: "logo",
+                label: "Logo",
+              },
+            ],
+          },
+        ],
+      },
+      {
         name: "page",
         label: "Pages",
         path: "content/pages",
