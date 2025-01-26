@@ -56,13 +56,10 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   post(relativePath: String): Post!
   postConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PostFilter): PostConnection!
-  global(relativePath: String): Global!
-  globalConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: GlobalFilter): GlobalConnection!
 }
 
 input DocumentFilter {
   post: PostFilter
-  global: GlobalFilter
 }
 
 type DocumentConnectionEdges {
@@ -88,12 +85,11 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Post | Global | Folder
+union DocumentNode = Post | Folder
 
 type Post implements Node & Document {
   title: String!
-  date: String!
-  body: JSON
+  body: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -106,24 +102,9 @@ input StringFilter {
   in: [String]
 }
 
-input DatetimeFilter {
-  after: String
-  before: String
-  eq: String
-  exists: Boolean
-  in: [String]
-}
-
-input RichTextFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-}
-
 input PostFilter {
   title: StringFilter
-  date: DatetimeFilter
-  body: RichTextFilter
+  body: StringFilter
 }
 
 type PostConnectionEdges {
@@ -137,48 +118,6 @@ type PostConnection implements Connection {
   edges: [PostConnectionEdges]
 }
 
-type GlobalHeaderNav {
-  label: String
-  href: String
-}
-
-type GlobalHeader {
-  name: String
-  nav: [GlobalHeaderNav]
-}
-
-type Global implements Node & Document {
-  header: GlobalHeader
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input GlobalHeaderNavFilter {
-  label: StringFilter
-  href: StringFilter
-}
-
-input GlobalHeaderFilter {
-  name: StringFilter
-  nav: GlobalHeaderNavFilter
-}
-
-input GlobalFilter {
-  header: GlobalHeaderFilter
-}
-
-type GlobalConnectionEdges {
-  cursor: String!
-  node: Global
-}
-
-type GlobalConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [GlobalConnectionEdges]
-}
-
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -187,39 +126,20 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updatePost(relativePath: String!, params: PostMutation!): Post!
   createPost(relativePath: String!, params: PostMutation!): Post!
-  updateGlobal(relativePath: String!, params: GlobalMutation!): Global!
-  createGlobal(relativePath: String!, params: GlobalMutation!): Global!
 }
 
 input DocumentUpdateMutation {
   post: PostMutation
-  global: GlobalMutation
   relativePath: String
 }
 
 input DocumentMutation {
   post: PostMutation
-  global: GlobalMutation
 }
 
 input PostMutation {
   title: String
-  date: String
-  body: JSON
-}
-
-input GlobalHeaderNavMutation {
-  label: String
-  href: String
-}
-
-input GlobalHeaderMutation {
-  name: String
-  nav: [GlobalHeaderNavMutation]
-}
-
-input GlobalMutation {
-  header: GlobalHeaderMutation
+  body: String
 }
 
 schema {

@@ -1,19 +1,5 @@
 fragment PostParts on Post {
   __typename
   title
-  date
   body
-}
-
-fragment GlobalParts on Global {
-  __typename
-  header {
-    __typename
-    name
-    nav {
-      __typename
-      label
-      href
-    }
-  }
 }

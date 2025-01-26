@@ -22,12 +22,11 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
         : "http://localhost:4001/graphql",
       token: process.env.TINA_TOKEN,
     },
-    media: {
-      tina: {
-        publicFolder: "public",
-        mediaRoot: "uploads"
-      }
-    }
+    cmsCallback: (cms) => {
+      cms.flags.set("branch", branch);
+      cms.flags.set("baseUrl", typeof window !== 'undefined' ? window.location.origin : '');
+      return cms;
+    },
   });
 
   return (

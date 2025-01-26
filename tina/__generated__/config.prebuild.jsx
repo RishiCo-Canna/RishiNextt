@@ -15,10 +15,13 @@ var config_default = defineConfig({
     basePath: "/admin"
   },
   media: {
-    tina: {
-      publicFolder: "public",
-      mediaRoot: "uploads"
-    }
+    loadCustomStore: async () => ({
+      accept: "*",
+      async store(files) {
+        console.log("Files to store:", files);
+        return ["placeholder-url"];
+      }
+    })
   },
   schema: {
     collections: [
@@ -35,62 +38,10 @@ var config_default = defineConfig({
             required: true
           },
           {
-            type: "datetime",
-            name: "date",
-            label: "Date",
-            required: true
-          },
-          {
-            type: "rich-text",
+            type: "string",
             name: "body",
             label: "Body",
             isBody: true
-          }
-        ]
-      },
-      {
-        name: "global",
-        label: "Global",
-        path: "content/global",
-        format: "json",
-        ui: {
-          global: true
-        },
-        fields: [
-          {
-            name: "header",
-            label: "Header",
-            type: "object",
-            fields: [
-              {
-                type: "string",
-                name: "name",
-                label: "Site Name"
-              },
-              {
-                type: "object",
-                name: "nav",
-                label: "Navigation",
-                list: true,
-                ui: {
-                  itemProps: (item) => ({
-                    label: item?.label
-                  })
-                },
-                fields: [
-                  {
-                    type: "string",
-                    name: "label",
-                    label: "Label"
-                  },
-                  {
-                    type: "string",
-                    name: "href",
-                    label: "Link"
-                  }
-                ]
-              }
-            ]
           }
         ]
       }
