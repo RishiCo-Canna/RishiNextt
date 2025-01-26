@@ -5,15 +5,14 @@ import { TinaCMS } from "tinacms";
 import { client } from "../lib/tina";
 import { PropsWithChildren } from "react";
 
-export default function TinaWrapper({ children }: PropsWithChildren) {
+export default function TinaCMSProvider({ children }: PropsWithChildren) {
   const cms = new TinaCMS({
     enabled: true,
-    client,
-    branch: process.env.NEXT_PUBLIC_TINA_BRANCH || "main"
+    clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
   });
 
   return (
-    <TinaProvider cms={cms}>
+    <TinaProvider cms={cms} client={client}>
       {children}
     </TinaProvider>
   );

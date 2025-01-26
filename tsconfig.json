@@ -23,16 +23,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./app/*",
-        "./lib/*"
-      ],
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/lib/*": [
-        "./lib/*"
-      ]
+      "@/*": ["./app/*"]
     },
     "baseUrl": "."
   },
@@ -40,6 +31,7 @@
     "app/**/*",
     "components/**/*",
     "lib/**/*",
+    "tina/**/*",
     ".next/types/**/*.ts"
   ],
   "exclude": [
