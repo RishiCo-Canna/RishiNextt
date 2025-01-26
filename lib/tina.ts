@@ -1,16 +1,18 @@
 import { createClient } from "tinacms/dist/client";
 import { queries } from "../tina/__generated__/types";
+import type { TinaCMS } from "tinacms";
 
-const replit_url = process.env.REPL_SLUG ? 
-  `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : 
-  'http://localhost:4001';
-
+/** 
+ * Production client configuration for Tina Cloud
+ */
 export const client = createClient({
-  url: `${replit_url}/graphql`,
-  token: process.env.TINA_TOKEN,
+  url: "https://content.tinajs.io/",
+  token: process.env.TINA_TOKEN!,
   queries,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  branch: process.env.NEXT_PUBLIC_TINA_BRANCH || "main",
+  cmsCallback: (cms: TinaCMS) => {
+    cms.flags.set("branch", process.env.NEXT_PUBLIC_TINA_BRANCH || "main");
+    return cms;
+  }
 });
 
 export type Client = typeof client;
