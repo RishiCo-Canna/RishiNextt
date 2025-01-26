@@ -19,7 +19,7 @@ export default defineConfig({
   media: {
     loadCustomStore: async () => ({
       publicFolder: "public",
-      mediaRoot: "uploads"
+      mediaRoot: "media"
     }),
   },
   schema: {
@@ -48,6 +48,9 @@ export default defineConfig({
             name: "body",
             label: "Body",
             isBody: true,
+            parser: {
+              type: "markdown"
+            }
           }
         ],
       },

@@ -1,107 +1,48 @@
-# Tina Starter 🦙
+# Next.js TinaCMS Project
 
-![tina-cloud-starter-demo](https://user-images.githubusercontent.com/103008/130587027-995ccc45-a852-4f90-b658-13e8e0517339.gif)
+A modern web application built with Next.js and TinaCMS for content management.
 
-This Next.js starter is powered by [TinaCMS](https://app.tina.io) for you and your team to visually live edit the structured content of your website. ✨
+## Features
 
-The content is managed through Markdown and JSON files stored in your GitHub repository, and queried through Tina GraphQL API.
+- Next.js 14 with App Router
+- TinaCMS for content management
+- TypeScript support
+- Tailwind CSS for styling
+- Responsive design
+- Content editing through `/admin` route
 
-### Features
+## Getting Started
 
-- [Tina Headless CMS](https://app.tina.io) for authentication, content modeling, visual editing and team management.
-- [Vercel](https://vercel.com) deployment to visually edit your site from the `/admin` route.
-- Local development workflow from the filesystem with a local GraqhQL server.
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Copy `.env.example` to `.env` and fill in your environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+4. Start the development server:
+   ```bash
+   pnpm dev
+   ```
 
-## Requirements
+## Environment Variables
 
-- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/), pnpm installed for local development.
-- A [TinaCMS](https://app.tina.io) account for live editing.
+Make sure to set up the following environment variables in your `.env` file:
 
-## Local Development
+- `NEXT_PUBLIC_TINA_CLIENT_ID`: Your TinaCMS client ID
+- `TINA_TOKEN`: Your TinaCMS token
+- `NEXT_PUBLIC_TINA_BRANCH`: The branch to use for TinaCMS (defaults to 'main')
+- `DATABASE_URL`: Your PostgreSQL database URL (if using database features)
 
-Install the project's dependencies:
+## Development
 
-> [!NOTE]  
-> [Do you know the best package manager for Node.js?](https://www.ssw.com.au/rules/best-package-manager-for-node/) Using the right package manager can greatly enhance your development workflow. We recommend using pnpm for its speed and efficient handling of dependencies. Learn more about why pnpm might be the best choice for your projects by checking out this rule from SSW.
+- Access the application at: `http://localhost:3000`
+- Admin panel at: `http://localhost:3000/admin`
+- Content is stored in the `/content` directory
+- TinaCMS configuration in `/tina` directory
 
+## License
 
-```
-pnpm install
-```
-
-Run the project locally:
-
-```
-pnpm dev
-```
-
-### Local URLs
-
-- http://localhost:3000 : browse the website
-- http://localhost:3000/admin : connect to Tina Cloud and go in edit mode
-- http://localhost:3000/exit-admin : log out of Tina Cloud
-- http://localhost:4001/altair/ : GraphQL playground to test queries and browse the API documentation
-
-## Deployment
-
-### GitHub Pages
-
-This starter can be deployed to GitHub Pages. A GitHub Actions workflow is included that handles the build and deployment process. 
-
-To deploy to GitHub Pages:
-
-1. In your repository settings, ensure GitHub Pages is enabled and set to deploy from the `gh-pages` branch
-2. Push changes to your main branch - the workflow will automatically build and deploy the site
-
-> [!NOTE]
-> When deploying to GitHub Pages, you'll need to update your secrets in Settings | Secrets and variables | Actions to include:
-> - `NEXT_PUBLIC_TINA_CLIENT_ID`
-> - `TINA_TOKEN`
->
-> You get these from your TinaCloud project - [read the docs](https://tina.io/docs/tina-cloud/deployment-options/github-pages)
-
-> [!IMPORTANT]
-> GitHub Pages does not support server side code, so this will run as a static site. If you don't want to deploy to GitHub pages, just delete `.github/workflows/build-and-deploy.yml`
-
-### Building the Starter Locally (Using the hosted content API)
-
-Replace the `.env.example`, with `.env`
-
-```
-NEXT_PUBLIC_TINA_CLIENT_ID=<get this from the project you create at app.tina.io>
-TINA_TOKEN=<get this from the project you create at app.tina.io>
-NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
-```
-
-Build the project:
-
-```bash
-pnpm build
-```
-
-## Getting Help
-
-To get help with any TinaCMS challenges you may have:
-
-- Visit the [documentation](https://tina.io/docs/) to learn about Tina.
-- [Join our Discord](https://discord.gg/zumN63Ybpf) to share feedback.
-- Visit the [community forum](https://community.tinacms.org/) to ask questions.
-- Get support through the chat widget on the TinaCMS Dashboard
-- [Email us](mailto:support@tina.io) to schedule a call with our team and share more about your context and what you're trying to achieve.
-- [Search or open an issue](https://github.com/tinacms/tinacms/issues) if something is not working.
-- Reach out on Twitter at [@tina_cms](https://twitter.com/tina_cms).
-
-## Development tips
-
-### Visual Studio Code GraphQL extension
-
-[Install the GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) to benefit from type auto-completion.
-
-### Typescript
-
-A good way to ensure your components match the shape of your data is to leverage the auto-generated TypeScript types.
-These are rebuilt when your `tina` config changes.
-
-## LICENSE
-
-Licensed under the [Apache 2.0 license](./LICENSE).
+This project is licensed under the MIT License.
