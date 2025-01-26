@@ -4,9 +4,13 @@ const nextConfig = {
   env: {
     NEXT_TELEMETRY_DISABLED: '1'
   },
-  // Ensure the app works with Replit's proxy
   async rewrites() {
-    return [];
+    return [
+      {
+        source: "/admin",
+        destination: "/admin/index.html",
+      },
+    ];
   }
 };
 

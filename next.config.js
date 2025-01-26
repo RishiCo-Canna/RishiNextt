@@ -1,14 +1,2 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  async rewrites() {
-    return [
-      {
-        source: "/admin",
-        destination: "/admin/index.html",
-      },
-    ];
-  },
-};
-
-export default nextConfig;
+// This file is deprecated in favor of next.config.mjs
+// You can safely delete this file
