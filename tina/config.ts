@@ -17,10 +17,6 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
-  // Configure a different port for the data layer
-  server: {
-    port: 9001,
-  },
   schema: {
     collections: [
       {
