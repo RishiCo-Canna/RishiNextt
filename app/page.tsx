@@ -1,4 +1,3 @@
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import client from "../tina/__generated__/client";
 import Link from "next/link"
 
@@ -8,14 +7,21 @@ export default async function Home() {
   });
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <div className="flex flex-col items-center w-full">
-          <h1 className="text-4xl font-bold mb-8">{globalData.data.header.name}</h1>
-          <div className="mt-4">
+    <main className="main">
+      <div className="container">
+        <div className="content">
+          <h1 className="title">{globalData.data.header.name}</h1>
+          <div style={{ marginTop: '1rem' }}>
             <a 
               href="/admin" 
-              className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors"
+              style={{
+                padding: '0.5rem 1rem',
+                backgroundColor: '#0070f3',
+                color: 'white',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                display: 'inline-block'
+              }}
             >
               Open Admin Panel
             </a>
