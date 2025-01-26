@@ -20,8 +20,8 @@ const actionTypes = {
 
 let count = 0;
 
-function genId() {
-  count = (count + 1) % Number.MAX_VALUE;
+function genId(): string {
+  count = (count + 1) % Number.MAX_SAFE_INTEGER;
   return count.toString();
 }
 
@@ -149,7 +149,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
-      onOpenChange: (open) => {
+      onOpenChange: (open: boolean) => {
         if (!open) dismiss();
       },
     },
