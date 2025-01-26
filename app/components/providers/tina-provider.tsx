@@ -19,6 +19,12 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
     client: {
       url: `https://content.tinajs.io/content/${clientId}/github/${branch}`,
       token: process.env.TINA_TOKEN,
+    },
+    media: {
+      loadCustomStore: async () => ({
+        publicFolder: "public",
+        mediaRoot: "uploads"
+      })
     }
   });
 

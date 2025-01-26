@@ -17,10 +17,10 @@ export default defineConfig({
     basePath: "",
   },
   media: {
-    tina: {
+    loadCustomStore: async () => ({
       publicFolder: "public",
       mediaRoot: "uploads"
-    },
+    }),
   },
   schema: {
     collections: [
@@ -28,6 +28,7 @@ export default defineConfig({
         name: "post",
         label: "Posts",
         path: "content/posts",
+        format: "mdx",
         fields: [
           {
             type: "string",
@@ -48,6 +49,52 @@ export default defineConfig({
             label: "Body",
             isBody: true,
           }
+        ],
+      },
+      {
+        name: "global",
+        label: "Global",
+        path: "content/global",
+        format: "json",
+        ui: {
+          global: true,
+        },
+        fields: [
+          {
+            name: "header",
+            label: "Header",
+            type: "object",
+            fields: [
+              {
+                type: "string",
+                name: "name",
+                label: "Site Name",
+              },
+              {
+                type: "object",
+                name: "nav",
+                label: "Navigation",
+                list: true,
+                ui: {
+                  itemProps: (item) => ({
+                    label: item?.label,
+                  }),
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "label",
+                    label: "Label",
+                  },
+                  {
+                    type: "string",
+                    name: "href",
+                    label: "Link",
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
     ],

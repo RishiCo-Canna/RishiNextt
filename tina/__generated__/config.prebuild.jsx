@@ -15,10 +15,10 @@ var config_default = defineConfig({
     basePath: ""
   },
   media: {
-    tina: {
+    loadCustomStore: async () => ({
       publicFolder: "public",
-      mediaRoot: "media"
-    }
+      mediaRoot: "uploads"
+    })
   },
   schema: {
     collections: [
