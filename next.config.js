@@ -12,7 +12,10 @@ const nextConfig = {
   webpack: (config) => {
     // Add any custom webpack configuration here
     return config;
-  }
+  },
+  // Required for Replit - ensures proper host binding
+  hostname: '0.0.0.0',
+  port: 3000
 };
 
 module.exports = nextConfig;
