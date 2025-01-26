@@ -1,9 +1,6 @@
 import { defineConfig } from "tinacms";
 
 const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
-const replit_url = process.env.REPL_SLUG ? 
-  `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : 
-  'http://localhost:4001';
 
 export default defineConfig({
   branch,
