@@ -9,13 +9,8 @@ var config_default = defineConfig({
   // Get this from tina.io
   build: {
     outputFolder: "admin",
-    publicFolder: "public"
-  },
-  media: {
-    tina: {
-      mediaRoot: "uploads",
-      publicFolder: "public"
-    }
+    publicFolder: "public",
+    basePath: "/admin"
   },
   schema: {
     collections: [
@@ -92,6 +87,12 @@ var config_default = defineConfig({
         ]
       }
     ]
+  },
+  media: {
+    tina: {
+      publicFolder: "public",
+      mediaRoot: "uploads"
+    }
   }
 });
 export {

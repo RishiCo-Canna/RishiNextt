@@ -16,18 +16,19 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
     enabled: true,
     clientId,
     branch,
-    tinaioConfig: {
-      frontendUrlOverride: null,
-      contentApiUrlOverride: branch === "main"
-        ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
-        : "http://localhost:4001/graphql",
+    client: {
+      url: `https://content.tinajs.io/1.5/content/${clientId}/github/${branch}`,
+      token: process.env.TINA_TOKEN,
     },
-    mediaStore: async () => {
-      return {
-        loadCustomStore: async () => ({
-          publicFolder: "public",
-          mediaRoot: "uploads"
-        })
+    build: {
+      publicFolder: "public",
+      outputFolder: "admin",
+      basePath: "/admin"
+    },
+    media: {
+      tina: {
+        publicFolder: "public",
+        mediaRoot: "uploads"
       }
     }
   });
