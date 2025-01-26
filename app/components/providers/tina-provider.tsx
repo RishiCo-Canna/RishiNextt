@@ -23,7 +23,6 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
       token: process.env.TINA_TOKEN,
     },
     media: {
-      // Using tina media store configuration
       tina: {
         publicFolder: "public",
         mediaRoot: "uploads"

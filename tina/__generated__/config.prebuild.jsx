@@ -1,16 +1,24 @@
 // tina/config.ts
 import { defineConfig } from "tinacms";
 var branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
+var clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+if (!clientId) {
+  throw new Error("Missing NEXT_PUBLIC_TINA_CLIENT_ID environment variable");
+}
 var config_default = defineConfig({
   branch,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID ?? "",
-  // Get this from tina.io
+  clientId,
   token: process.env.TINA_TOKEN,
-  // Get this from tina.io
   build: {
     outputFolder: "admin",
     publicFolder: "public",
     basePath: "/admin"
+  },
+  media: {
+    tina: {
+      publicFolder: "public",
+      mediaRoot: "uploads"
+    }
   },
   schema: {
     collections: [
@@ -87,12 +95,6 @@ var config_default = defineConfig({
         ]
       }
     ]
-  },
-  media: {
-    tina: {
-      publicFolder: "public",
-      mediaRoot: "uploads"
-    }
   }
 });
 export {
