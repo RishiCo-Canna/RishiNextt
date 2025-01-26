@@ -2,7 +2,6 @@
 
 import { TinaProvider } from "tinacms";
 import { TinaCMS } from "tinacms";
-import { queries } from "../../../tina/__generated__/types";
 import React, { PropsWithChildren } from "react";
 
 export default function TinaCMSProvider({ children }: PropsWithChildren) {
@@ -16,15 +15,20 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
   const cms = new TinaCMS({
     enabled: true,
     clientId,
-    queries,
-    apiURL: branch === "main"
-      ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
-      : "http://localhost:4001/graphql",
-    mediaStore: {
-      loadCustomStore: async () => ({
-        publicFolder: "public",
-        mediaRoot: "uploads"
-      })
+    branch,
+    tinaioConfig: {
+      frontendUrlOverride: null,
+      contentApiUrlOverride: branch === "main"
+        ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
+        : "http://localhost:4001/graphql",
+    },
+    mediaStore: async () => {
+      return {
+        loadCustomStore: async () => ({
+          publicFolder: "public",
+          mediaRoot: "uploads"
+        })
+      }
     }
   });
 
