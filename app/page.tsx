@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
+  // Query content directly from Tina Cloud
   const tinaData = await client.queries.page({
     relativePath: 'home.mdx',
   });

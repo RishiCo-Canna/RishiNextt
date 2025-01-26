@@ -20,6 +20,7 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
+  // Enable cloud-based content management
   schema: {
     collections: [
       {
