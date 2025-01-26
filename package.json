@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "dev": "TINA_PUBLIC_IS_LOCAL=false tinacms dev -c \"next dev\"",
     "build": "tinacms build && next build"
   },
   "keywords": [],
@@ -31,8 +31,8 @@
     "@radix-ui/react-toast": "^1.2.5",
     "@tanstack/react-query": "^5.64.2",
     "@tinacms/cli": "^1.8.1",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
