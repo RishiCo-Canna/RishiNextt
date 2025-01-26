@@ -5,7 +5,12 @@ import dynamic from "next/dynamic";
 const TinaCMSProvider = dynamic(
   () => import("@/components/providers/tina-provider"),
   { 
-    ssr: false 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-screen flex items-center justify-center">
+        <div className="animate-pulse">Loading TinaCMS...</div>
+      </div>
+    )
   }
 );
 

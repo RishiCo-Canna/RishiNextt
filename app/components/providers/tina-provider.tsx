@@ -26,7 +26,7 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
       cms.flags.set("branch", branch);
       cms.flags.set("baseUrl", typeof window !== 'undefined' ? window.location.origin : '');
       return cms;
-    },
+    }
   });
 
   return (

@@ -12,19 +12,16 @@ export default defineConfig({
   clientId,
   token: process.env.TINA_TOKEN,
   build: {
-    outputFolder: "admin",
+    outputFolder: "public/admin",
     publicFolder: "public",
-    basePath: "/admin",
+    basePath: "", // Remove /admin to ensure assets load correctly
   },
   media: {
-    loadCustomStore: async () => ({
-      accept: '*',
-      async store(files) {
-        // We'll implement proper storage later
-        console.log('Files to store:', files);
-        return ['placeholder-url'];
-      },
-    }),
+    // Simplified media configuration
+    tina: {
+      publicFolder: "public",
+      mediaRoot: "media"
+    },
   },
   schema: {
     collections: [
