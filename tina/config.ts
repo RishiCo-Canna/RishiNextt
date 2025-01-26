@@ -1,11 +1,16 @@
 import { defineConfig } from "tinacms";
 
 const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
+const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+
+if (!clientId) {
+  throw new Error("Missing NEXT_PUBLIC_TINA_CLIENT_ID environment variable");
+}
 
 export default defineConfig({
   branch,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID ?? '', // Get this from tina.io
-  token: process.env.TINA_TOKEN, // Get this from tina.io
+  clientId,
+  token: process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
     publicFolder: "public",

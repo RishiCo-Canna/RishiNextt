@@ -17,7 +17,9 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
     clientId,
     branch,
     client: {
-      url: `https://content.tinajs.io/1.5/content/${clientId}/github/${branch}`,
+      url: branch === "main"
+        ? `https://content.tinajs.io/1.5/content/${clientId}/github/${branch}`
+        : "http://localhost:4001/graphql",
       token: process.env.TINA_TOKEN,
     },
     build: {
