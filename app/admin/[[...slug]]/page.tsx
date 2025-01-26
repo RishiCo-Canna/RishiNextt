@@ -4,8 +4,8 @@ import { TinaAdmin } from "tinacms";
 
 export default function AdminPage() {
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen bg-background">
       <TinaAdmin />
-    </div>
+    </main>
   );
 }
