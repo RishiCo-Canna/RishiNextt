@@ -17,23 +17,19 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
     clientId,
     branch,
     client: {
-      url: `https://content.tinajs.io/1.5/content/203e0535-1e4c-4d5e-94bc-1bed80337d1e/github/${branch}`,
+      url: `https://content.tinajs.io/1.5/content/${clientId}/github/${branch}`,
       token: process.env.TINA_TOKEN,
     },
     build: {
       publicFolder: "public",
       outputFolder: "admin",
-      basePath: "/admin",
+      basePath: "/admin"
     },
     media: {
       tina: {
         publicFolder: "public",
         mediaRoot: "uploads"
       }
-    },
-    cmsCallback: (cms) => {
-      cms.flags.set("branch", branch);
-      return cms;
     }
   });
 
