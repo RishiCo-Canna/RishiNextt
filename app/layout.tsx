@@ -1,5 +1,15 @@
+"use client";
+
 import "./globals.css";
 import type { Metadata } from "next";
+import { TinaCMS, TinaProvider } from "tinacms";
+import { client } from "./lib/tina";
+
+const cms = new TinaCMS({
+  enabled: true,
+  client,
+  sidebar: true,
+});
 
 export const metadata: Metadata = {
   title: "Next.js App",
@@ -14,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-background">
-        {children}
+        <TinaProvider cms={cms}>
+          {children}
+        </TinaProvider>
       </body>
     </html>
   );
