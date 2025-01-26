@@ -10,7 +10,7 @@ export default function Home() {
     <main className="min-h-screen flex items-center justify-center bg-background">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome to Our App</h1>
-        <p className="text-muted-foreground">Start building your application here</p>
+        <p className="text-muted-foreground">A modern web application with TinaCMS integration</p>
       </div>
     </main>
   );

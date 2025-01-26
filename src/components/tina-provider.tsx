@@ -2,7 +2,7 @@
 
 import { TinaProvider } from "tinacms";
 import { TinaCMS } from "tinacms";
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 
 export default function TinaCMSProvider({ children }: PropsWithChildren) {
   const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
