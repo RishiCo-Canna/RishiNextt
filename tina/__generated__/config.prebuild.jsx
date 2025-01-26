@@ -1,18 +1,21 @@
+// tina/config.ts
 import { defineConfig } from "tinacms";
-
-const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
-const replit_url = process.env.REPL_SLUG ? 
-  `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : 
-  'http://localhost:4001';
-
-export default defineConfig({
+var branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
+var config_default = defineConfig({
   branch,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID ?? '', // Get this from tina.io
-  token: process.env.TINA_TOKEN, // Get this from tina.io
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID ?? "",
+  // Get this from tina.io
+  token: process.env.TINA_TOKEN,
+  // Get this from tina.io
   build: {
     outputFolder: "admin",
-    publicFolder: "public",
-    basePath: "/admin",
+    publicFolder: "public"
+  },
+  media: {
+    tina: {
+      mediaRoot: "uploads",
+      publicFolder: "public"
+    }
   },
   schema: {
     collections: [
@@ -26,21 +29,21 @@ export default defineConfig({
             name: "title",
             label: "Title",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "datetime",
             name: "date",
             label: "Date",
-            required: true,
+            required: true
           },
           {
             type: "rich-text",
             name: "body",
             label: "Body",
-            isBody: true,
-          },
-        ],
+            isBody: true
+          }
+        ]
       },
       {
         name: "global",
@@ -48,7 +51,7 @@ export default defineConfig({
         path: "content/global",
         format: "json",
         ui: {
-          global: true,
+          global: true
         },
         fields: [
           {
@@ -59,7 +62,7 @@ export default defineConfig({
               {
                 type: "string",
                 name: "name",
-                label: "Site Name",
+                label: "Site Name"
               },
               {
                 type: "object",
@@ -68,32 +71,29 @@ export default defineConfig({
                 list: true,
                 ui: {
                   itemProps: (item) => ({
-                    label: item?.label,
-                  }),
+                    label: item?.label
+                  })
                 },
                 fields: [
                   {
                     type: "string",
                     name: "label",
-                    label: "Label",
+                    label: "Label"
                   },
                   {
                     type: "string",
                     name: "href",
-                    label: "Link",
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  media: {
-    tina: {
-      publicFolder: "public",
-      mediaRoot: "uploads",
-    },
-  },
+                    label: "Link"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 });
+export {
+  config_default as default
+};
