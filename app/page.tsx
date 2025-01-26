@@ -1,16 +1,10 @@
 export default function Home() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-background">
-      <div className="w-full max-w-md mx-4">
-        <div className="pt-6">
-          <h1 className="text-2xl font-bold text-foreground mb-4">
-            Welcome to Next.js Application
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            This is your new Next.js application running on Replit
-          </p>
-        </div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
+        <h1 className="text-4xl font-bold">Welcome to Next.js</h1>
+        <p className="mt-4">This is your new Next.js application</p>
       </div>
-    </div>
+    </main>
   );
 }

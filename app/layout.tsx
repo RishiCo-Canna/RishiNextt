@@ -1,17 +1,12 @@
-import React from "react";
+import "./globals.css";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
 
-import "@/styles.css";
+const inter = Inter({ subsets: ["latin"] });
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-export const metadata = {
+export const metadata: Metadata = {
   title: "Next.js App",
-  description: "A Next.js application running on Replit",
+  description: "A modern Next.js application",
 };
 
 export default function RootLayout({
@@ -21,15 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={cn(
-          "min-h-screen flex flex-col antialiased",
-          inter.variable,
-          "font-sans"
-        )}
-      >
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
