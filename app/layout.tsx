@@ -1,6 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import TinaWrapper from "./components/tina-provider";
+import dynamic from "next/dynamic";
+
+// Import TinaWrapper dynamically to avoid server component issues
+const TinaWrapper = dynamic(() => import("./components/tina-provider"), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: "Next.js App",

@@ -11,16 +11,21 @@ const replit_url = process.env.REPL_SLUG ?
 export const client = createClient({
   url: `${replit_url}/graphql`,
   token: process.env.TINA_TOKEN,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID ?? '',
+  queries,
   branch,
+  // Configure media handling for Replit
   mediaStore: {
     loadRemoteMedia: async () => {
+      // Return empty array as we're not handling media in this basic setup
       return [];
     },
     persist: async () => {
+      // Return empty URL as we're not handling media upload in this basic setup
       return { url: '' };
     },
   },
+  // Configure the API endpoint for Replit
+  apiUrl: `${replit_url}/api/graphql`,
 });
 
 export type Client = typeof client;
