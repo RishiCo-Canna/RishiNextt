@@ -3,24 +3,19 @@
 import { TinaCMS, TinaProvider } from "tinacms";
 import React from "react";
 
-export default function TinaCMSProvider({ children }: { children: React.ReactNode }) {
-  const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
-  const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
+// Create a singleton instance of TinaCMS
+const cms = new TinaCMS({
+  enabled: true,
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
+  branch: process.env.NEXT_PUBLIC_TINA_BRANCH || "main",
+  token: process.env.TINA_TOKEN,
+});
 
-  if (!clientId) {
-    throw new Error("Missing NEXT_PUBLIC_TINA_CLIENT_ID environment variable");
-  }
-
-  const cms = new TinaCMS({
-    enabled: true,
-    clientId,
-    branch,
-    token: process.env.TINA_TOKEN,
-    cmsCallback: (cms) => {
-      cms.flags.set("branch-switcher", true);
-    },
-  });
-
+export default function TinaCMSProvider({ 
+  children 
+}: { 
+  children: React.ReactNode 
+}) {
   return (
     <TinaProvider cms={cms}>
       {children}
