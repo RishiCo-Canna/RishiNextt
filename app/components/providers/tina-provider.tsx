@@ -1,10 +1,9 @@
 "use client";
 
-import { TinaProvider } from "tinacms";
-import { TinaCMS } from "tinacms";
-import React, { PropsWithChildren } from "react";
+import { TinaCMS, TinaProvider } from "tinacms";
+import React from "react";
 
-export default function TinaCMSProvider({ children }: PropsWithChildren) {
+export default function TinaCMSProvider({ children }: { children: React.ReactNode }) {
   const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
   const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
 
@@ -12,23 +11,34 @@ export default function TinaCMSProvider({ children }: PropsWithChildren) {
     throw new Error("Missing NEXT_PUBLIC_TINA_CLIENT_ID environment variable");
   }
 
+  const basePath = typeof window !== 'undefined' ? window.location.origin : '';
+
   const cms = new TinaCMS({
     enabled: true,
     clientId,
     branch,
-    client: {
-      url: branch === "main" 
-        ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
-        : "http://localhost:4001/graphql",
-      token: process.env.TINA_TOKEN,
+    token: process.env.TINA_TOKEN,
+    cmsCallback: (cms) => {
+      cms.flags.set("branch-switcher", true);
+      cms.flags.set("chunking", true);
     },
-    media: {
-      loadCustomStore: async () => ({
-        accept: "*",
-        publicFolder: "public",
-        mediaRoot: "uploads"
-      })
-    }
+    publicFolder: "public",
+    mediaStore: {
+      loadFile: async (id) => {
+        const file = await fetch(`${basePath}/api/media/${id}`).then(res => res.blob());
+        return { file };
+      },
+      uploadFile: async (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        const res = await fetch(`${basePath}/api/media/upload`, {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        return data.id;
+      },
+    },
   });
 
   return (
