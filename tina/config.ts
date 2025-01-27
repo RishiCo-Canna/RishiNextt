@@ -17,10 +17,10 @@ export default defineConfig({
     basePath: "",
   },
   media: {
-    loadCustomStore: async () => ({
+    tina: {
       publicFolder: "public",
       mediaRoot: "uploads"
-    })
+    },
   },
   schema: {
     collections: [
