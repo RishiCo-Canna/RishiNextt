@@ -20,12 +20,10 @@ export default defineConfig({
     tina: {
       publicFolder: "public",
       mediaRoot: "uploads"
-    },
+    }
   },
   client: {
-    url: branch === "main" 
-      ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
-      : "http://localhost:4001/graphql",
+    url: `https://content.tinajs.io/content/${clientId}/github/${branch}`,
     token: process.env.TINA_TOKEN,
   },
   schema: {
