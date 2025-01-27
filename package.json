@@ -37,7 +37,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
     "tailwind-merge": "^2.2.1",
-    "tinacms": "^1.6.7",
+    "tinacms": "^2.6.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
