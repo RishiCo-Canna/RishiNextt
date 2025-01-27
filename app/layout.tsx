@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-const TinaCMSProvider = dynamic(
-  () => import("@/components/providers/tina-provider"),
+const TinaWrapper = dynamic(
+  () => import("./components/providers/tina-wrapper"),
   { ssr: false }
 );
 
@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen bg-background">
-        <TinaCMSProvider>
+        <TinaWrapper>
           {children}
-        </TinaCMSProvider>
+        </TinaWrapper>
       </body>
     </html>
   );

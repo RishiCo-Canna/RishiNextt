@@ -3,7 +3,7 @@
 import { TinaCMS, TinaProvider } from "tinacms";
 import React from "react";
 
-export default function TinaCMSProvider({ children }: { children: React.ReactNode }) {
+export default function TinaWrapper({ children }: { children: React.ReactNode }) {
   const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
   const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
 
