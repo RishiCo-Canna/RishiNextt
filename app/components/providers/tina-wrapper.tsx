@@ -1,16 +1,11 @@
+
 "use client";
 
 import { TinaCMS, TinaProvider } from "tinacms";
 import React from "react";
+import { branch, clientId } from "../../lib/tina";
 
 export default function TinaWrapper({ children }: { children: React.ReactNode }) {
-  const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
-  const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
-
-  if (!clientId) {
-    throw new Error("Missing NEXT_PUBLIC_TINA_CLIENT_ID environment variable");
-  }
-
   const cms = new TinaCMS({
     enabled: true,
     clientId,
@@ -18,6 +13,10 @@ export default function TinaWrapper({ children }: { children: React.ReactNode })
     token: process.env.TINA_TOKEN,
     cmsCallback: (cms) => {
       cms.flags.set("branch-switcher", true);
+    },
+    mediaStore: {
+      publicFolder: "public",
+      mediaRoot: "uploads"
     },
   });
 
