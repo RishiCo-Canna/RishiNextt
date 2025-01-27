@@ -1,4 +1,4 @@
-import { defineConfig } from "tinacms";
+import  { defineConfig } from "tinacms";
 
 const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
 const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
@@ -19,8 +19,8 @@ export default defineConfig({
   media: {
     loadCustomStore: async () => ({
       publicFolder: "public",
-      mediaRoot: "media"
-    }),
+      mediaRoot: "uploads"
+    })
   },
   schema: {
     collections: [
