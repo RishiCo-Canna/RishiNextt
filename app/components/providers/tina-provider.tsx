@@ -1,15 +1,14 @@
-"use client";
+'use client'
 
-import { TinaCMS, TinaProvider } from "tinacms";
-import React from "react";
+import { TinaCMS, TinaProvider } from 'tinacms'
+import { TinaEditProvider } from 'tinacms/dist/edit-state'
 
-// Create a singleton instance of TinaCMS
 const cms = new TinaCMS({
   enabled: true,
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
-  branch: process.env.NEXT_PUBLIC_TINA_BRANCH || "main",
+  branch: process.env.NEXT_PUBLIC_TINA_BRANCH || 'main',
   token: process.env.TINA_TOKEN,
-});
+})
 
 export default function TinaCMSProvider({ 
   children 
@@ -18,7 +17,9 @@ export default function TinaCMSProvider({
 }) {
   return (
     <TinaProvider cms={cms}>
-      {children}
+      <TinaEditProvider>
+        {children}
+      </TinaEditProvider>
     </TinaProvider>
-  );
+  )
 }

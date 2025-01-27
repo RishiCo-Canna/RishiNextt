@@ -1,29 +1,24 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import dynamic from "next/dynamic";
+import './globals.css'
+import { Inter } from 'next/font/google'
+import TinaCMSProvider from './components/providers/tina-provider'
 
-const TinaCMSProvider = dynamic(
-  () => import("./components/providers/tina-provider"),
-  { ssr: false }
-);
+const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: "Next.js App with Tina CMS",
-  description: "A modern Next.js application with Tina CMS integration",
-};
+export const metadata = {
+  title: 'Tina CMS Starter',
+  description: 'A starter template for Tina CMS with Next.js',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-background">
-        <TinaCMSProvider>
-          {children}
-        </TinaCMSProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <TinaCMSProvider>{children}</TinaCMSProvider>
       </body>
     </html>
-  );
+  )
 }

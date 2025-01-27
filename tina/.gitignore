@@ -1,11 +1,5 @@
-# Generated files
-__generated__/*
-!__generated__/.gitkeep
-
-# Cache
-.tina/
-.tina-cache/
-.env.local
-
-# Build output
-dist/
+# Local Tina files
+__generated__
+.env
+.env.*
+!.env.example

@@ -1,32 +1,21 @@
 import { defineConfig } from "tinacms";
 
-const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
-const clientId = process.env.NEXT_PUBLIC_TINA_CLIENT_ID;
-
-if (!clientId) {
-  throw new Error("Missing NEXT_PUBLIC_TINA_CLIENT_ID environment variable");
-}
+// Your hosting provider likely exposes this as an environment variable
+const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
 
 export default defineConfig({
   branch,
-  clientId,
-  token: process.env.TINA_TOKEN,
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "", // Get this from tina.io
+  token: process.env.TINA_TOKEN || "", // Get this from tina.io
   build: {
-    outputFolder: "public/admin",
+    outputFolder: "admin",
     publicFolder: "public",
-    basePath: "",
   },
   media: {
     tina: {
+      mediaRoot: "uploads",
       publicFolder: "public",
-      mediaRoot: "uploads"
-    }
-  },
-  client: {
-    url: branch === "main" 
-      ? `https://content.tinajs.io/content/${clientId}/github/${branch}`
-      : "http://localhost:4001/graphql",
-    token: process.env.TINA_TOKEN,
+    },
   },
   schema: {
     collections: [
@@ -44,65 +33,10 @@ export default defineConfig({
             required: true,
           },
           {
-            type: "datetime",
-            name: "date",
-            label: "Date",
-            required: true,
-          },
-          {
             type: "rich-text",
             name: "body",
             label: "Body",
             isBody: true,
-            parser: {
-              type: "markdown"
-            }
-          }
-        ],
-      },
-      {
-        name: "global",
-        label: "Global",
-        path: "content/global",
-        format: "json",
-        ui: {
-          global: true,
-        },
-        fields: [
-          {
-            name: "header",
-            label: "Header",
-            type: "object",
-            fields: [
-              {
-                type: "string",
-                name: "name",
-                label: "Site Name",
-              },
-              {
-                type: "object",
-                name: "nav",
-                label: "Navigation",
-                list: true,
-                ui: {
-                  itemProps: (item) => ({
-                    label: item?.label,
-                  }),
-                },
-                fields: [
-                  {
-                    type: "string",
-                    name: "label",
-                    label: "Label",
-                  },
-                  {
-                    type: "string",
-                    name: "href",
-                    label: "Link",
-                  },
-                ],
-              },
-            ],
           },
         ],
       },

@@ -1,17 +1,17 @@
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Next.js App',
-  description: 'A modern web application built with Next.js',
-};
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Our App</h1>
-        <p className="text-muted-foreground">A modern web application with TinaCMS integration</p>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
+        <h1 className="text-4xl font-bold mb-8">Welcome to Tina CMS + Next.js</h1>
+        <Link 
+          href="/admin" 
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Go to Admin Panel
+        </Link>
       </div>
     </main>
-  );
+  )
 }
