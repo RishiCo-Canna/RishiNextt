@@ -17,7 +17,7 @@ var config_default = defineConfig({
   media: {
     loadCustomStore: async () => ({
       publicFolder: "public",
-      mediaRoot: "uploads"
+      mediaRoot: "media"
     })
   },
   schema: {
@@ -26,6 +26,7 @@ var config_default = defineConfig({
         name: "post",
         label: "Posts",
         path: "content/posts",
+        format: "mdx",
         fields: [
           {
             type: "string",
@@ -44,7 +45,10 @@ var config_default = defineConfig({
             type: "rich-text",
             name: "body",
             label: "Body",
-            isBody: true
+            isBody: true,
+            parser: {
+              type: "markdown"
+            }
           }
         ]
       },
