@@ -1,7 +1,8 @@
 'use client'
 
-import { TinaCMS, TinaProvider } from 'tinacms'
-import { TinaEditProvider } from 'tinacms/dist/edit-state'
+import { TinaCMS } from "tinacms"
+import { TinaProvider } from "tinacms/dist/admin"
+import { TinaEditProvider } from "tinacms/dist/edit-state"
 
 const cms = new TinaCMS({
   enabled: true,
@@ -17,7 +18,7 @@ export default function TinaCMSProvider({
 }) {
   return (
     <TinaProvider cms={cms}>
-      <TinaEditProvider>
+      <TinaEditProvider editMode={false}>
         {children}
       </TinaEditProvider>
     </TinaProvider>
